@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "./Blogpage.css";
 
-function Blogpage({ AllBlogs }) {
+function Blogpage({ AllBlogs, port }) {
   const {id} = useParams()
   
   const blog = AllBlogs?.find((blog) => blog._id === id) || null;
@@ -12,17 +12,25 @@ function Blogpage({ AllBlogs }) {
       setTitle(blog.title)
       setBody(blog.body)
       setAuthor(blog.author)
+      setComments(blog.comments);
     }
   }, [AllBlogs])
-  
   
   const [title, setTitle] = useState(blog?.title || "");
   const [body, setBody] = useState(blog?.body || "");
   const [author, setAuthor] = useState(blog?.author || "");
+  const [comments, setComments] = useState(blog?.comments || []);
   
+  console.log(comments)
+  
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    const response = await fetch(`${port}/`)
+  }
+
   const createForm = (blog) => {
     return (
-      <form className='blog-update-form'>
+      <form onSubmit={(e) => handleFormSubmit(e)} className='blog-update-form'>
         <ul>
           <li>
             <label htmlFor="title">Title:</label>
@@ -60,13 +68,28 @@ function Blogpage({ AllBlogs }) {
 
   const createBlogComments = (comment) => {
     return (
-      <div key={comment._id} className='comment-div'>
-        <p className='comment-author'>{comment.author}</p>
+      <div data-key={comment._id} key={comment._id} className="comment-div">
+        <p className="comment-author">{comment.author}</p>
         <p>{comment.text}</p>
-        <i className="fa-solid fa-trash"></i>
+        <i
+          className="fa-solid fa-trash"
+          onClick={() => handleCommentDelete(comment._id)}
+        ></i>
       </div>
     );
   }
+
+  const handleCommentDelete = (id) => {
+    const indexToDelete = comments.findIndex((comment) => comment._id === id);
+    const newCommentArr = [
+      ...comments.slice(0, indexToDelete),
+      ...comments.slice(indexToDelete + 1),
+    ];
+    setComments(newCommentArr);
+    
+    const commentElement = document.querySelector(`[data-key="${id}"]`);
+    commentElement.remove();
+  };
 
 
   return (

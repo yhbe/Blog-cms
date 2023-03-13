@@ -29,7 +29,7 @@ function RouterSwitch() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Homepage AllBlogs={AllBlogs}/>}/>
-      <Route path='/:id' element={<Blogpage AllBlogs={AllBlogs}/>}/>
+      <Route path='/:id' element={<Blogpage AllBlogs={AllBlogs} port={port}/>}/>
     </Routes>
     </BrowserRouter>
   )
