@@ -27,3 +27,28 @@
   border-radius: 5px;
   font-size: 1rem;
 }
+
+.homepage-main{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.single-blog{
+  padding: 20px;
+  max-width: 400px;
+  max-height: 400px;
+  margin: 0px 10px;
+  box-shadow: 1px 1px 5px black;
+  border-radius: 5px;
+  overflow: scroll;
+}
+
+.single-blog-edit-post{
+  color: blue;
+  font-weight: bolder;
+  width: max-content;
+  cursor: pointer;
+  padding: 5px 15px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.466);
+  border-radius: 5px;
+}

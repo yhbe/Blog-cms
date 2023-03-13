@@ -1,7 +1,10 @@
 import React from 'react'
+import CreateHomepageBlogs from '../helper/createHomepageBlogs'
 import "./Homepage.css"
 
-function Homepage() {
+function Homepage({AllBlogs}) {
+  const blogJSX = AllBlogs?.map(blog => CreateHomepageBlogs(blog))
+
   return (
     <div className="container">
     <nav className="homepage-nav homepage-padding">
@@ -21,7 +24,8 @@ function Homepage() {
       </div>
     </nav>
     <main className="homepage-main">
-
+      {!blogJSX && <h1>Loading blogs...</h1>}
+      {blogJSX}
     </main>
     </div>
   )

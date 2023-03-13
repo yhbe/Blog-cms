@@ -5,9 +5,7 @@ import Homepage from './views/Homepage'
 function RouterSwitch() {
   const [AllBlogs, setAllBlogs] = useState(undefined)
   const port = process.env.REACT_APP_PORT || "http://localhost:5000"
-
-  console.log(AllBlogs)
-
+  
   useEffect(() => {
     const getAllBlogs = async () => {
       try {
@@ -29,7 +27,7 @@ function RouterSwitch() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Homepage />}/>
+      <Route path='/' element={<Homepage AllBlogs={AllBlogs}/>}/>
     </Routes>
     </BrowserRouter>
   )
