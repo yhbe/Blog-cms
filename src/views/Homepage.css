@@ -1,0 +1,29 @@
+.homepage-nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.homepage-padding{
+  padding: 20px 40px;
+}
+
+.nav-leftside{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 350px;
+  font-size: 1.5rem;
+}
+
+.nav-leftside > *{
+  cursor: pointer;
+}
+
+.nav-rightside-logout-button{
+  padding: 10px 30px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+}
