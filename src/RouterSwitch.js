@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Blogpage from './views/Blogpage'
 import Homepage from './views/Homepage'
 
 function RouterSwitch() {
@@ -28,6 +29,7 @@ function RouterSwitch() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Homepage AllBlogs={AllBlogs}/>}/>
+      <Route path='/:id' element={<Blogpage AllBlogs={AllBlogs}/>}/>
     </Routes>
     </BrowserRouter>
   )
