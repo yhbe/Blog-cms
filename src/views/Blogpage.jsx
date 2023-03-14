@@ -56,7 +56,7 @@ function Blogpage({ AllBlogs, port, refreshPage }) {
 
   const createForm = (blog) => {
     return (
-      <form onSubmit={(e) => handleFormSubmit(e)} className='blog-update-form'>
+      <form onSubmit={(e) => handleFormSubmit(e)} className="blog-update-form">
         <ul>
           <li>
             <label htmlFor="title">Title:</label>
@@ -70,7 +70,15 @@ function Blogpage({ AllBlogs, port, refreshPage }) {
           </li>
           <li>
             <label htmlFor="body">Body:</label>
-            <input onChange={(e) => setBody(e.target.value)} type="text" name="body" id="body" value={body} />
+            <textarea
+              onChange={(e) => setBody(e.target.value)}
+              type="text"
+              name="body"
+              id="body"
+              value={body}
+              cols="30"
+              rows="10"
+            />
           </li>
           <li>
             <label htmlFor="author">Author:</label>
@@ -83,8 +91,8 @@ function Blogpage({ AllBlogs, port, refreshPage }) {
             />
           </li>
           <div className="button-container">
-            <button className='update-button'>Update</button>
-            <button className='delete-post'>Delete Post</button>
+            <button className="update-button">Update</button>
+            <button className="delete-post">Delete Post</button>
           </div>
           {blog.comments.map((comment) => createBlogComments(comment))}
         </ul>
