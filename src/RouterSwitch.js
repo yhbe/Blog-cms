@@ -24,12 +24,28 @@ function RouterSwitch() {
     getAllBlogs();
   }, []);
 
+  const refreshPage = () => {
+    const getAllBlogs = async () => {
+      try {
+        const response = await fetch(`${port}/blogs`, {
+          method: "GET",
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setAllBlogs(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllBlogs();
+  }
 
   return (
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Homepage AllBlogs={AllBlogs}/>}/>
-      <Route path='/:id' element={<Blogpage AllBlogs={AllBlogs} port={port}/>}/>
+      <Route path='/:id' element={<Blogpage AllBlogs={AllBlogs} port={port} refreshPage={refreshPage}/>}/>
     </Routes>
     </BrowserRouter>
   )

@@ -1,3 +1,9 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .homepage-nav{
   display: flex;
   justify-content: space-between;
@@ -30,6 +36,7 @@
 
 .homepage-main{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
@@ -37,7 +44,7 @@
   padding: 20px;
   max-width: 400px;
   max-height: 400px;
-  margin: 0px 10px;
+  margin: 10px;
   box-shadow: 1px 1px 5px black;
   border-radius: 5px;
   overflow: scroll;

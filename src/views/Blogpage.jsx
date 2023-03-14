@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import "./Blogpage.css";
 
-function Blogpage({ AllBlogs, port }) {
+function Blogpage({ AllBlogs, port, refreshPage }) {
   const {id} = useParams()
+  const navigate = useNavigate()
   
   const blog = AllBlogs?.find((blog) => blog._id === id) || null;
   
@@ -25,7 +26,32 @@ function Blogpage({ AllBlogs, port }) {
   
   const handleFormSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch(`${port}/`)
+
+    const toSubmit = {
+      title,
+      body,
+      author,
+      comments
+    }
+
+    try{
+      const response = await fetch(`${port}/blogs/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(toSubmit)
+      });
+  
+      if (!response.ok){
+        throw new Error("Failed to update blog post")
+      }
+
+      refreshPage()
+      navigate("/")
+    } catch(error){
+      console.log(error)
+    }
   }
 
   const createForm = (blog) => {
@@ -94,7 +120,7 @@ function Blogpage({ AllBlogs, port }) {
 
   return (
     <div className='container'>
-      <i className="fa-solid fa-arrow-left"></i>
+      <i onClick={() => navigate("/")} className="fa-solid fa-arrow-left"></i>
     {!blog && <h1>Loading...</h1>}
     {blog && createForm(blog)}
     </div>

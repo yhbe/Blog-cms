@@ -1,9 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import CreateHomepageBlogs from '../helper/createHomepageBlogs'
 import "./Homepage.css"
 
 function Homepage({AllBlogs}) {
-  const blogJSX = AllBlogs?.map(blog => CreateHomepageBlogs(blog))
+  const navigate = useNavigate()
+  
+  const blogJSX = AllBlogs?.map(blog => CreateHomepageBlogs(blog, navigate))
 
   return (
     <div className="container">
