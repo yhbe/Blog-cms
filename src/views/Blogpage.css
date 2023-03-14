@@ -66,3 +66,14 @@
 .update-button{
   color: rgb(26, 170, 26);
 }
+
+.create-a-blog-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  font-size: 2rem;
+  align-items: center;
+}
